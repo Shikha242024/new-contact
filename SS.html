@@ -33,11 +33,11 @@
             "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI1N2YzNzE1OS05NGE1LTRlNTQtYjAwYS0wZmJmMTQxOTU4MTEiLCJ1bmlxdWVfbmFtZSI6ImJoYXJhZHdhakBjbGFyZS5haSIsIm5hbWVpZCI6ImJoYXJhZHdhakBjbGFyZS5haSIsImVtYWlsIjoiYmhhcmFkd2FqQGNsYXJlLmFpIiwiYXV0aF90aW1lIjoiMDUvMjEvMjAyNSAwNTo0OTo0OSIsInRlbmFudF9pZCI6IjMwOTA0NiIsImRiX25hbWUiOiJtdC1wcm9kLVRlbmFudHMiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJFWFRFUk5BTF9BRE1JTklTVFJBVE9SIiwiZXhwIjoyNTM0MDIzMDA4MDAsImlzcyI6IkNsYXJlX0FJIiwiYXVkIjoiQ2xhcmVfQUkifQ.Cn8cCZpO8evguLbk3OD8CVQVqlFHYHceygdPgC10DGw" // 🔁 Replace this with your real API key
           },
           body: JSON.stringify({
-            template_name: "new_chat", // 🔁 Replace with your actual WATI template name
+            template_name: "welcome_wati_v2", // 🔁 Replace with your actual WATI template name
             broadcast_name: "Website Form",
             parameters: [
               {
-                name: "name", // 🔁 Match this with your template placeholders
+                name: "{{name}}", // 🔁 Match this with your template placeholders
                 value: name
               },
             ],
