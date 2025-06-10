@@ -5,20 +5,58 @@
   </head>
   <body>
     <h2>Contact Us</h2>
-    <form action="https://hooks.zapier.com/hooks/catch/23289104/uy4embw/" method="POST">
+    <form id="contactForm">
       <label>Name:</label><br />
-      <input type="text" name="name" required /><br /><br />
+      <input type="text" id="name" required /><br /><br />
 
-      <label>Phone Number:</label><br />
-      <input type="text" name="phone" required /><br /><br />
+      <label>Phone Number (with country code):</label><br />
+      <input type="text" id="phone" required /><br /><br />
 
       <label>Message:</label><br />
-      <textarea name="message" required></textarea><br /><br />
+      <textarea id="message" required></textarea><br /><br />
 
       <button type="submit">Send</button>
     </form>
+
+    <script>
+      document.getElementById("contactForm").addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        const name = document.getElementById("name").value;
+        const phone = document.getElementById("phone").value;
+        const message = document.getElementById("message").value;
+
+        fetch("https://app.wati.io/api/v1/sendTemplateMessage", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI1N2YzNzE1OS05NGE1LTRlNTQtYjAwYS0wZmJmMTQxOTU4MTEiLCJ1bmlxdWVfbmFtZSI6ImJoYXJhZHdhakBjbGFyZS5haSIsIm5hbWVpZCI6ImJoYXJhZHdhakBjbGFyZS5haSIsImVtYWlsIjoiYmhhcmFkd2FqQGNsYXJlLmFpIiwiYXV0aF90aW1lIjoiMDUvMjEvMjAyNSAwNTo0OTo0OSIsInRlbmFudF9pZCI6IjMwOTA0NiIsImRiX25hbWUiOiJtdC1wcm9kLVRlbmFudHMiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJFWFRFUk5BTF9BRE1JTklTVFJBVE9SIiwiZXhwIjoyNTM0MDIzMDA4MDAsImlzcyI6IkNsYXJlX0FJIiwiYXVkIjoiQ2xhcmVfQUkifQ.Cn8cCZpO8evguLbk3OD8CVQVqlFHYHceygdPgC10DGw" // 🔁 Replace this with your real API key
+          },
+          body: JSON.stringify({
+            template_name: "new_chat", // 🔁 Replace with your actual WATI template name
+            broadcast_name: "Website Form",
+            parameters: [
+              {
+                name: "name", // 🔁 Match this with your template placeholders
+                value: name
+              },
+            ],
+            phone_number: phone
+          })
+        })
+          .then(response => {
+            if (response.ok) {
+              alert("WhatsApp message sent!");
+            } else {
+              alert("Failed to send WhatsApp message.");
+            }
+          })
+          .catch(error => {
+            alert("Error: " + error.message);
+          });
+      });
+    </script>
   </body>
 </html>
-
 
 
